@@ -57,8 +57,9 @@ function App() {
           </div>
           </div>
       </p>
-
+      <footer>Created by Mothrax</footer>
     </div>
+    
   );
 }
 export default App;
