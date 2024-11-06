@@ -2,6 +2,9 @@ import './App.css';
 import MiComponente  from './MiComponente';
 import Contador  from './Contador';
 import Formulario from './Formulario';
+import Visible from './Visible';
+import Tareas from './Tareas';
+import Buscador from './Buscador';
 
 function App() {
   return (
@@ -9,7 +12,10 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Contador></Contador>
-        <Formulario><p>hola</p></Formulario>
+        <Formulario></Formulario>
+        <Visible></Visible>
+        <Tareas></Tareas>
+        <Buscador></Buscador>
       </header>
     </div>
     </>

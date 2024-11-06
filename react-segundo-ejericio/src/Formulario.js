@@ -1,22 +1,23 @@
-import React, { useRef } from 'react';
-import { useEffect } from 'react';
+
+import { useState} from 'react';
+
 
 function Formulario() {
-    const mensaje = 'Bienvenido, ';
-    const handleSubmit = (event) => {
+    const [texto, setTexto] = useState("");
+    const enviar = (event)=>{
         event.preventDefault();
-      };
-      
-      <form onSubmit={handleSubmit}>
-        
-      </form>
-
-return (
-    <form>
-        <input type='text'></input>
-        <button>enviar</button>
-    </form>
-);
-    } 
+        setTexto ("Bienvenido, " + event.target[0].value)
+    }
+    return (
+      <div>
+        <form onSubmit={(e => enviar(e))}>
+        <input type='text' id='inputText'></input>
+        <button type='submit'>Enviar</button>
+        <p>{texto}</p>
+        </form>  
+      </div>
+    );
+  }
+  
       
 export default Formulario;

@@ -18,11 +18,7 @@ function App() {
       <div className="App">
         <header className="App-header">
           <div>
-            {mostrarSaludo ? (
-              <Saludo nombre="Raúl" />
-            ) : (
-              <Despedida nombre="Raúl" />
-            )}
+            {mostrarSaludo ? ( <Saludo nombre="Raúl" /> ) : (<Despedida nombre="Raúl" /> )}
           </div>
           <div class="StyledTextComponent">
             <ul>
