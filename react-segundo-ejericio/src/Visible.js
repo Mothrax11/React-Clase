@@ -1,21 +1,18 @@
+import { useState } from "react";
 
-function Visible(){
-    function mostrar(e) {
-    var elemento = document.getElementById("pEscondido")
+function Visible() {
+    const [visible, setVisible] = useState(false);
 
-    if(elemento.style.display === "none"){
-        elemento.style.display = "block"
-    } else {
-        elemento.style.display = "none"
+    function mostrar() {
+        setVisible(!visible);
     }
-}
 
-    return(
+    return (
         <div>
-            <button onClick={() => mostrar()}>Enseñar/Esconder</button>
-            <p id='pEscondido'>Hola buenas tardes</p>
+            <button onClick={mostrar}>Enseñar/Esconder</button>
+            {visible && <p>Hola buenas tardes</p>}
         </div>
-    )
+    );
 }
 
 export default Visible;

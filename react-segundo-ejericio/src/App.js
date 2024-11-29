@@ -5,8 +5,11 @@ import Formulario from './Formulario';
 import Visible from './Visible';
 import Tareas from './Tareas';
 import Buscador from './Buscador';
+import { useState } from 'react';
 
 function App() {
+  const [name, setName] = useState("Default")
+
   return (
     <>
     <div className="App">
@@ -16,6 +19,9 @@ function App() {
         <Visible></Visible>
         <Tareas></Tareas>
         <Buscador></Buscador>
+        <div>
+          <input type='text' onChange={(e) => setName(e.target.value)}></input>
+        </div>
       </header>
     </div>
     </>

@@ -60,8 +60,7 @@ function App() {
             textUpdate={(e) => handleSquareChage(e)}></Square>
             <Square row="1" column="3" attempt={currentAttempt}
             textUpdate={(e) => handleSquareChage(e)}></Square>
-            <Square row="1" column="4" attempt={currentAttempt}
-            textUpdate={(e) => handleSquareChage(e)}></Square>
+            <Square row="1" column="4" attempt={currentAttempt} textUpdate={(e) => handleSquareChage(e)}></Square>
             <Square row="1" column="5" attempt={currentAttempt}
             textUpdate={(e) => handleSquareChage(e)}></Square>
             <Square row="1" column="6" attempt={currentAttempt}
