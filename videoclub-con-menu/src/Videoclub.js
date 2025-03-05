@@ -6,6 +6,7 @@ function Videoclub() {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState("");
+  const [categoriasUnicas, setCategoriasUnicas] = useState([]);
 
   useEffect(() => {
     const fetchPeliculas = async () => {
@@ -15,6 +16,13 @@ function Videoclub() {
         setSelectedMovie(data[0]);
     };
     fetchPeliculas();
+
+    const categoriasSet = new Set();
+        peliculas.forEach((pelicula) => {
+          const categorias = Array.isArray(pelicula.categoria) ? pelicula.categoria : [pelicula.categoria];
+          categorias.forEach((categoria) => categoriasSet.add(categoria));
+        });
+        setCategoriasUnicas([...categoriasSet]);
   }, []);
 
   const handleSelectMovie = (movie) => {
@@ -27,6 +35,7 @@ function Videoclub() {
   };
 
   return (
+    <>
     <Container fluid className="p-4">
       {selectedMovie && (
         <Row className="mb-4">
@@ -88,6 +97,15 @@ function Videoclub() {
         </Modal.Footer>
       </Modal>
     </Container>
+    <div>
+    <h1>Categorías Únicas</h1>
+    <ul>
+      {categoriasUnicas.map((categoria, index) => (
+        <li key={index}>{categoria}</li>
+      ))}
+    </ul>
+  </div>
+  </>
   );
 }
 
