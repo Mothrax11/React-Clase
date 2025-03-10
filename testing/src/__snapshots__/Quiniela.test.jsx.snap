@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`debería renderizar Quiniela correctamente 1`] = `
+<DocumentFragment>
+  <div
+    class="container"
+  >
+    <button
+      class="btn btn-primary"
+      type="button"
+    >
+      Nueva Apuesta
+    </button>
+    <div />
+  </div>
+</DocumentFragment>
+`;

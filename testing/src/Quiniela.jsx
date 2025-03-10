@@ -1,31 +1,51 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { ApuestasContext } from "./ApuestasProvider";
 import { Card, Button, Modal, Form, Container } from "react-bootstrap";
 
 function Quiniela() {
-    const { apuestasItem } = useContext(ApuestasContext);
+    const [apuestasItem, setApuestasItem] = useState([]);
     const [show, setShow] = useState(false);
     const [nuevaApuesta, setNuevaApuesta] = useState(null);
+
+
+    const cargarApuesta = (data) => {
+            const aux_data = [];
+            let i = 0;
+            for (i = 0; i < data.length; i++) {
+                let aux_element = data[i];
+                aux_element["id"] = i;
+                aux_data.push(aux_element);
+            }
+            setApuestasItem(aux_data);
+        };
+    
+        const fetchApuestas = async () => {
+            const response = await fetch('quinielas.json');
+            const data = await response.json();
+            cargarApuesta(data.apuestas);
+        };
+    
+        useEffect(() => {
+            fetchApuestas();
+        }, []);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        const formData = new FormData(e.target);
-        //Añade de forma temporal un nuevo element al json
+        const datosApuesta = new FormData(e.target);
         const nueva = {
-            fecha: formData.get("fecha"),
-            jornada: formData.get("jornada"),
+            fecha: datosApuesta.get("fecha"),
+            jornada: datosApuesta.get("jornada"),
             partidos: [
                 {
-                    local: formData.get("local"),
-                    visitante: formData.get("visitante"),
+                    local: datosApuesta.get("local"),
+                    visitante: datosApuesta.get("visitante"),
                     apuestas: {
-                        "1": formData.get("apuesta1"),
-                        "X": formData.get("apuestaX"),
-                        "2": formData.get("apuesta2"),
+                        "1": datosApuesta.get("apuesta1"),
+                        "X": datosApuesta.get("apuestaX"),
+                        "2": datosApuesta.get("apuesta2"),
                     },
                 },
             ],
@@ -47,8 +67,8 @@ function Quiniela() {
                 <Modal.Body>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group>
-                            <Form.Label>Fecha</Form.Label>
-                            <Form.Control type="text" name="fecha" required />
+                            <Form.Label htmlFor="fecha">Fecha</Form.Label>
+                            <Form.Control type="date" name="fecha" required />
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Jornada</Form.Label>
@@ -87,10 +107,12 @@ function Quiniela() {
                         <p>{apuesta.fecha}</p>
                         <p>{apuesta.jornada}</p>
                         {apuesta.partidos.map((partido, i) => (
-                            <p key={i}>
+                            <Card key={i}>
+                                <p>{apuesta.fecha}</p>
+                                <p>{apuesta.jornada}</p>
                                 {partido.local} VS {partido.visitante} |  
                                 1 ({partido.apuestas["1"]}) / X ({partido.apuestas["X"]}) / 2 ({partido.apuestas["2"]})
-                            </p>
+                            </Card>
                         ))}
                     </Card>
                 ))}

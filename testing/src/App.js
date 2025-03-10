@@ -9,9 +9,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <ApuestasProvider>
+        
           <Quiniela></Quiniela>
-        </ApuestasProvider>
+        
       </header>
     </div>
   );
